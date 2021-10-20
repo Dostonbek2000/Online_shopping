@@ -1,0 +1,19 @@
+.center{
+    width: 100%;
+    height: 87vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* background-color: #0080c0; */
+}
+.login{
+    display: inline-block;
+    /* border: 1px solid red;  */
+    text-align: center;
+    height: 300px; 
+    width: 400px;
+}
+.MuiInput-underline:after {
+    border-bottom: 2px solid #fff !important;
+}

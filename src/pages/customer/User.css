@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.error {
+  background-color: #ff0000;
+  color: white;
+  font-size: 23px;
+}
+.custom-toast {
+  background-color: #07bb3dca;
+  color: white;
+  font-size: 23px;
+}
+.deleted-info {
+  background-color: #07bb3dca;
+  color: white;
+  font-size: 23px;
+}
+

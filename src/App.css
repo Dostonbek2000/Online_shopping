@@ -1,0 +1,9 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* background:url('./img/12.png'); */
+}
+body{
+    background-color: #1a9900;
+}
