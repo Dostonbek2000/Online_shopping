@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
+import IconBack from '@mui/icons-material/ArrowBack';
+import { Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -74,9 +76,10 @@ const Cart = () => {
       if (httpResponse.status === 200) {
         dispatch({
           type: "RESET",
+          payload: {}
         });
         setCart([]);
-        history.push("/home");
+        history.push("/users");
       }
     } catch (error) {
       console.log("Error at Cart.jsx in a row 84");
@@ -85,13 +88,23 @@ const Cart = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'space-around' ,flexWrap:'wrap'}}>
+
+        <div style={{ display: 'flex',  alignItems: 'center', marginTop: 10 ,marginLeft:30,padding:10}}>
+          <Button
+            component={NavLink}
+            to={{ pathname: "/users", }}
+            style={{ display: cart.length !== 0 ? 'flex' : "none", backgroundColor: 'orange', borderRadius: 19, width: '160px', height: 40, color: 'white' ,justifyContent:'space-evenly'}}
+          >
+            <IconBack />Products
+          </Button>
+        </div>
+      <div style={{ display: 'flex',  flexWrap: 'wrap' }}>
         {cart.map((item, index) => {
           return (
-            <Card style={{width:320,backgroundColor:'#00eb1b',margin:20}} variant="outlined" key={index} >
+            <Card style={{ width: 320, backgroundColor: '#00eb1b', margin: 20 }} variant="outlined" key={index} >
               <CardContent>
                 <Typography variant="h5" component="h2">
-                  {index+1}{'. '}{item.title}
+                  {index + 1}{'. '}{item.title}
                 </Typography>
 
                 <Typography variant="body2" component="p">
@@ -121,7 +134,7 @@ const Cart = () => {
       </div>
       {cart.length !== 0 ? (
         <div>
-          <Card style={{ display: 'inline-block', width: '100%',height:60,marginTop:30 }}>
+          <Card style={{ display: 'inline-block', width: '100%', height: 60, marginTop: 30 }}>
             <Typography variant="h5" component="h2" style={{ width: '100%', }}>
               <Input style={{ paddingLeft: "15px", width: '100%' }}
                 placeholder="Izoh qoldirish!"
@@ -131,26 +144,26 @@ const Cart = () => {
               />
             </Typography>
           </Card>
-            <div style={{display:'flex',justifyContent:'center'}}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button variant="contained" color="primary" onClick={SubmitCart} style={{ width: '30%', margin: 30 }}>
               Tasdiqlash
             </Button>
-            </div>
+          </div>
         </div>
       ) : (
         <div>
-          <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:50}}>
-             <img style={{width:200}} src={shop} alt="" />
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
+            <img style={{ width: 200 }} src={shop} alt="" />
           </div>
-          <h1 style={{display:'flex',height:'100px',justifyContent:'center',alignItems:'center'}}> You didn't buy anything , Please buy and click again </h1>
-          <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:10}}>
-             <Button
-             component={NavLink}
-             to={{ pathname: "/users",}}
-             style={{backgroundColor:'orange',borderRadius:19,width:'24%',height:40,color:'white'}}
-             >
-               Go to Products
-             </Button>
+          <h1 style={{ display: 'flex', height: '100px', justifyContent: 'center', alignItems: 'center',textAlign:'center' }}> Siz harid amalga oshirmadingiz</h1>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+            <Button
+              component={NavLink}
+              to={{ pathname: "/users", }}
+              style={{ backgroundColor: 'orange', borderRadius: 19, width: '200px', height: 40, color: 'white' }}
+            >
+              Go to Products
+            </Button>
           </div>
         </div>
       )}

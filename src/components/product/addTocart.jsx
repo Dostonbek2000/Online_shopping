@@ -1,12 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import Badge from "@material-ui/core/Badge";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-// import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-// import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { useDispatch } from "react-redux";
 import TextField from "@material-ui/core/TextField";

@@ -26,6 +26,7 @@ import Badge from "@material-ui/core/Badge";
 // import jwt from "jwt-decode";
 import img2 from '../../img/cubes.png'
 const drawerWidth = 240;
+import jwt from "jwt-decode";
 
 
 const menuItems = [
@@ -59,6 +60,7 @@ const menuItems = [
     pageUrl: "/",
     roles: ["agent", "customer", "admin"],
   },
+ 
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -134,6 +136,7 @@ export default function MiniDrawer() {
   const [countItemsStore, setCountItemsStore] = useState(
     useSelector((state) => state.cart.items)
   );
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     setCountItemsStore(countItemStore.length);

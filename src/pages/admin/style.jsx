@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-const bgcolor = "#1a9900";
+const bgcolor = "white";
 export const useStyles = makeStyles((theme) => ({
   inputs: {
     backgroundColor: "white",

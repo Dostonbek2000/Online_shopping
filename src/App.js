@@ -24,6 +24,7 @@ import AddUser from "./pages/admin/AddUser";
 import EditUser from './pages/admin/EditUser'
 import Settings from './components/Settings/index';
 import EditProfile from './components/Settings/EditProfile'
+import DisplayImage from "./components/Settings/DisplayImage";
 
 function App() {
   const loggedIn = useSelector((state) => !!state.auth.token);
@@ -109,6 +110,12 @@ function App() {
               path="/cart"
               exact
               component={Cart}
+              auth={loggedIn}
+            /> 
+            <ProtectedRoute
+              path="/displayimage"
+              exact
+              component={DisplayImage}
               auth={loggedIn}
             /> 
             </Grid>

@@ -6,7 +6,7 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "INIT":
-      return { ...initialState, agent: action.payload.userId };
+      return { ...initialState, agent: action.payload.userId,items: []}
 
     case "ADD_PRODUCT":
       // tekshirib qushish kerak, duplikate larni oldini olish.
@@ -28,10 +28,7 @@ const cartReducer = (state = initialState, action) => {
       return 0;
 
     case "RESET":
-      return {
-        agent: null,
-        items: [],
-      };
+      return { ...state, agent: null, items: [] };
 
     default:
       return state;

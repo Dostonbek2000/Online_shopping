@@ -21,7 +21,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 export const EditUser = (props) => {
   const classes = useStyles();
-  const user = props.location.user;
+  const { location} = props
+  const user = location.user;
   const token = localStorage.getItem("token");
   const [userName, setUserName] = useState(user.username);
   const [title, setTitle] = useState(user.title);
@@ -98,7 +99,7 @@ export const EditUser = (props) => {
     <>
       {loading ? (
         <Backdrop className={classes.backdrop} open={loading}>
-          <CircularProgress color="primary" thickness="6" />
+          <CircularProgress color="primary"  />
         </Backdrop>
       ) : (
         <Container fluid='true' maxWidth="md" className={classes.wrapper}>
@@ -249,7 +250,7 @@ export const EditUser = (props) => {
                 className={classes.inputs}
                 fullWidth
                 id="browseImage"
-                disabled="true"
+                // disabled="true"
                 placeholder="rasm yuklash"
                 value={imgUrl}
                 onChange={(e) => {
@@ -267,7 +268,7 @@ export const EditUser = (props) => {
             </Paper>
             <Paper className={classes.paper} elevation={0}>
               <TextareaAutosize
-                rowsMax={3}
+                maxRows={3}
                 aria-label="maximum height"
                 variant="outlined"
                 placeholder="Manzil ma'lumotlari..."
@@ -288,7 +289,7 @@ export const EditUser = (props) => {
             </Paper>
             <Paper className={classes.paper} elevation={0}>
               <TextareaAutosize
-                rowsMax={3}
+                maxRows={3}
                 aria-label="maximum height"
                 variant="outlined"
                 placeholder="Qo'shimcha ma'lumotlar..."

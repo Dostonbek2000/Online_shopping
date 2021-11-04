@@ -1,0 +1,15 @@
+.CardContent{
+    position:absolute;
+    z-index: 99;
+    margin-top:-112px;
+    background-color:#001D1E;
+    width:100%;
+    opacity:0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.CardContent:hover{
+    opacity:0.8;
+    transition: .5s;
+   
+}

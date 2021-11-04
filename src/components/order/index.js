@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import apiUrl from "../../Config/config";
 import axios from "axios";
+import jwt from "jwt-decode";
 
 const useStyles = makeStyles({
   root: {
@@ -49,6 +50,7 @@ const Orders = () => {
   const [nextBASE, setnextBASE] = useState([])
   console.log("order ", order);
 
+  
   const [pathUrl] = useState(
     role === "agent" ? "/agent/orders" : "/customer/orders"
   );
@@ -62,7 +64,7 @@ const Orders = () => {
           },
         });
         if (result.status == 200) {
-          setOrder(result.data);
+          setOrder(result.data.reverse());
           setrefresh(!refresh)
         }
       } catch (error) {
@@ -74,7 +76,7 @@ const Orders = () => {
 
   return (
     <div style={{ color: '#1a9900' }}>
-      <h1 style={{ textAlign: 'center', padding: 30, fontFamily: '-moz-initial', fontWeight: 'bold', color: '#380100', fontSize: 35 }}>Siz uchun Kelgan Orderlar</h1>
+      <h1 style={{ textAlign: 'center', padding: 30, fontFamily: '-moz-initial', fontWeight: 'bold', color: '#380100', fontSize: 35 }}> Orderlar</h1>
       <div className="Container">
         {order.length !== 0 ? order.map((data, index) => (
           <Card

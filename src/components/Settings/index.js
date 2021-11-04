@@ -7,16 +7,18 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import BrandImg from "./assets/brand.jpg";
-import EditIcon from "@material-ui/icons/Edit";
+import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import apiUrl from "../../Config/config";
 import jwt from "jwt-decode";
+import Tooltip from '@mui/material/Tooltip';
+import myimg from './assets/admin1.jpg'
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 500,
+    maxWidth: 800,
     margin: "20px auto",
   },
   media: {
@@ -51,76 +53,105 @@ export default function MediaCard() {
   return (
 
     <Card className={classes.root}>
-
-      <CardActionArea>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingLeft: 15 }}>
+        <h1 >{baZa.title ? 'My Profile' : 'Admin Panel '}</h1>
+        <CardActions>
+          <Tooltip title="Edit Profile" style={{ color: 'black' }} placement="left">
+            <IconButton
+              color="secondary"
+              component={Link}
+              style={{display:baZa.phone ? 'block' : 'none'}}
+              to={{
+                pathname: "/editpro",
+                data: baZa,
+              }}
+              aria-label="edit profile"
+              onClick={() => localStorage.setItem('MyProfile', JSON.stringify(baZa))}
+            >
+              <SettingsIcon />
+            </IconButton>
+          </Tooltip>
+        </CardActions>
+      </div>
+      <CardActionArea
+        component={Link}
+        to={{
+          pathname: "/displayimage",
+          data: baZa,
+        }}
+        aria-label="edit profile"
+        onClick={() => localStorage.setItem('myProfileImage', JSON.stringify(baZa))}
+      >
         <CardMedia
+        
           className={classes.media}
-          image={baZa.media}
+          // src={baZa.media}
+          image={baZa.media ? baZa.media : myimg}
         />
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h2"
-          >
-            {baZa.title}
-          </Typography>
-          <Typography
-            variant="h6"
-            color="primary"
-            component="li"
-            className={classes.list}
-          >
-            Username: {baZa.username}
-          </Typography>
-          <Typography
-            variant="h6"
-            color="primary"
-            component="li"
-            className={classes.list}
-          >
-            Password: {baZa.password}
-          </Typography>
-          <Typography
-            variant="h6"
-            color="primary"
-            component="li"
-            className={classes.list}
-          >
-            Role: {baZa.role}
-          </Typography>
-          <Typography
-            variant="h6"
-            color="primary"
-            component="li"
-            className={classes.list}
-          >
-            Tel : {baZa.phone}
-          </Typography>
-          <Typography
-            variant="h6"
-            color="primary"
-            component="li"
-            className={classes.list}
-          >
-            Manzil: {baZa.address}
-          </Typography>
-        </CardContent>
       </CardActionArea>
-      <CardActions>
-        <IconButton
-          color="secondary"
-          component={Link}
-          to={{
-            pathname: "/editpro",
-            data: baZa,
-          }} 
-          aria-label="edit profile"
-          onClick={()=>localStorage.setItem('MyProfile',JSON.stringify(baZa))}
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h1"
+          style={{display:baZa.title ? 'block' : 'none'}}
         >
-          <EditIcon style={{marginRight:10}}/> { ' '} Edit My profile
-        </IconButton>
-      </CardActions>
+          Brand Name: {baZa.title ? baZa.title : ''}
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          component="li"
+          className={classes.list}
+        >
+          Username: {baZa.username ? baZa.username : 'admin'}
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          component="li"
+          className={classes.list}
+        >
+          Password: {baZa.password ? baZa.password : 'admin'}
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          style={{ fontFamily: "inherit", color: 'blue' }}
+          component="li"
+          className={classes.list}
+        >
+          Role: {baZa.role ? baZa.role : 'admin'}
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          style={{ fontFamily: "monospace", color: 'gray',display:baZa.phone ? 'block' : 'none' }}
+          component="li"
+          className={classes.list}
+        >
+          Tel : {baZa.phone}
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          component="li"
+          style={{ fontFamily: '-moz-initial', color: 'gray' ,display:baZa.address ? 'block' : 'none'}}
+          className={classes.list}
+        >
+          Manzil: {baZa.address}
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          component="li"
+          style={{ fontFamily: '-moz-initial', color: 'gray',display:baZa.desc ? 'block' : 'none' }}
+          className={classes.list}
+        >
+          Description: {baZa.desc}
+        </Typography>
+      </CardContent>
+
 
     </Card>
 

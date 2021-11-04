@@ -71,7 +71,7 @@ export default function UserItem({
                 container
                 direction="column"
                 spacing={2}
-                alignItems="start"
+                
                 style={{ paddingLeft: "50px", paddingTop: "40px" }}
               >
                 <Grid item xs sm md>
@@ -89,7 +89,7 @@ export default function UserItem({
                   </Typography>
                 </Grid>
               </Grid>
-              <Grid item alignItems="start" style={{ paddingTop: "20px" }}>
+              <Grid item  style={{ paddingTop: "20px" }}>
                 <IconButton
                   aria-label="delete"
                   onClick={() => {

@@ -22,17 +22,17 @@ import "react-toastify/dist/ReactToastify.css";
 
 const InputComponent = (props) => {
   const classes = useStyles();
-
+  const {type,disabled,placeholder,value,onChange,...rest} = props;
   return (
     <TextField
       color="primary"
-      type={props.type}
+      type={type}
       className={classes.inputs}
-      disabled={props.disabled}
-      placeholder={props.placeholder}
+      disabled={disabled}
+      placeholder={placeholder}
       fullWidth
-      value={props.value}
-      onChange={props.onChange}
+      value={value}
+      onChange={onChange}
       inputProps={{
         style: {
           fontFamily: "Roboto",
