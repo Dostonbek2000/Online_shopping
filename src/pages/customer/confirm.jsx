@@ -9,12 +9,14 @@ import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable"; // this is must learn
 
 function PaperComponent(props) {
+  console.log("popopopopo",props);
+  const {...rest} = props;
   return (
     <Draggable
       handle="#draggable-dialog-title"
       cancel={'[class*="MuiDialogContent-root"]'}
     >
-      <Paper {...props} />
+      <Paper {...rest} />
     </Draggable>
   );
 }

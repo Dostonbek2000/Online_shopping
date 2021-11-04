@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, Paper,  Typography } from "@material-ui/core";
+import { Container, Paper, Typography } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import CancelIcon from "@material-ui/icons/Cancel";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import { TextField } from "@mui/material";
+import { TextField } from "@material-ui/core";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { useStyles } from "./style";
-import { Link,Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import jwt from "jwt-decode";
 
@@ -42,145 +42,152 @@ function UploadButtons() {
 
 
 
-const EditProfile = (props) => {
-  
+const EditProfile = () => {
 
   
- const data = JSON.parse(localStorage.getItem('MyProfile'))
- console.log("data local",data);
+
+  const data1 = JSON.parse(localStorage.getItem('MyProfile'))
+  console.log("data local", data1);
+
+  const { username, password, role, phone, media, address, title, desc } = data1;
+
   const classes = useStyles();
-  const [username, setusername] = useState(data.username);
-  const [password, setpassword] = useState(data.password);
-  const [role, setrole] = useState(data.role);
-  const [phone, setphone] = useState(data.phone)
-  const [media, setmedia] = useState(data.media);
-  const [address, setaddress] = useState(data.address);
-  const [title, settitle] = useState(data.title)
-  const [desc, setdesc] = useState(data.desc);
-  const [active, setActive] = useState(true);
+  const [username1, setusername] = useState(username);
+  const [password1, setpassword] = useState(password);
+  const [role1, setrole] = useState(role);
+  const [phone1, setphone] = useState(phone)
+  const [media1, setmedia] = useState(media);
+  const [address1, setaddress] = useState(address);
+  const [title1, settitle] = useState(title)
+  const [desc1, setdesc] = useState(desc);
+  const [active1, setActive] = useState(true);
 
   const token = localStorage.getItem('token')
-  
-    const handleClick = async (e) => {
-    setActive(active);
-      const DATA = {
-        inn: 0,
-        active: true,
-        media: media,
-        username: username,
-        password: password,
-        phone: phone,
-        address:address,
-        title: title,
-        role: role,
-        desc: desc,
-        
 
+  const handleClick = async (e) => {
+    setActive(true);
+    const DATA = {
+      inn: 0,
+      active: true,
+      media: media1,
+      username: username1,
+      password: password1,
+      phone: phone1,
+      address: address1,
+      title: title1,
+      role: role1,
+      desc: desc1,
     }
-      try {
-        const res = await axios.put(
-          `http://localhost:8000/api/${jwt(token).role}/accounts/${jwt(token).id}`,
-          DATA,
-          {
-            headers: {
-              token: token,
-            },
-          }
-        );
-        handleClick();
-        
-      } catch (error) {
-        console.log(error);
-        toast("Error at Editing Profile", {
-          className: "error",
-          draggable: true,
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      }
-    };
+    
+      await axios.put(
+        `http://localhost:8000/api/${jwt(token).role}/accounts/${jwt(token).id}`,
+        DATA,
+        {
+          headers: {
+            token: token,
+          },
+        }
+      );
+      
+    
+  };
   return (
     <>
       <Container fluid='true' maxWidth="md" className={classes.wrapper}>
         <form action="#" className={classes.root} autoComplete="on">
           <Paper elevation={0} className={classes.paper}>
             <Typography
-              variant="h2"
+              variant="h3"
               style={{
                 textAlign: "center",
                 fontFamiliy: '"Roboto" san-serif',
                 color: "black",
               }}
             >
-              My Profile
+              Edit my Profile
             </Typography>
           </Paper>
           <Paper elevation={0} className={classes.paper}>
             <TextField
-            style={{width:'100%'}}
-            placeholder="Title"
+              style={{ width: '100%',marginTop:15 }}
+              label="Title"
+              variant='outlined'
               type="text"
-              onChange={(e)=>settitle(e.target.value)}
+              onChange={(e) => settitle(e.target.value)}
+              value={title1}
             />
           </Paper>
           <Paper elevation={0} className={classes.paper}>
             <TextField
-            style={{width:'100%'}}
-            placeholder="Role"
+              style={{ width: '100%',marginTop:15 }}
+              variant='outlined'
+              label="Role"
               type="text"
-              onChange={(e)=>setrole(e.target.value)}
+              onChange={(e) => setrole(e.target.value)}
+              value={role1}
             />
           </Paper>
           <Paper elevation={0} className={classes.paper}>
             <TextField
-            style={{width:'100%'}}
-            placeholder="Phone"
+              style={{ width: '100%',marginTop:15 }}
+              variant='outlined'
+              label="Phone"
               type="text"
-              onChange={(e)=>setphone(e.target.value)}
+              value={phone1}
+              onChange={(e) => setphone(e.target.value)}
 
             />
           </Paper>
           <Paper elevation={0} className={classes.paper}>
             <TextField
-            style={{width:'100%'}}
-            placeholder='Username'
+              style={{ width: '100%',marginTop:15 }}
+              label='Username'
+              variant='outlined'
               type="text"
-              onChange={(e)=>setusername(e.target.value)}
+              onChange={(e) => setusername(e.target.value)}
+              value={username1}
 
             />
           </Paper>
           <Paper elevation={0} className={classes.paper}>
             <TextField
-            style={{width:'100%'}}
-            placeholder='Password'
+              style={{ width: '100%',marginTop:15 }}
+              variant='outlined'
+              label='Password'
               type="text"
-              onChange={(e)=>setpassword(e.target.value)}
+              onChange={(e) => setpassword(e.target.value)}
+              value={password1}
 
             />
           </Paper>
           <Paper elevation={0} className={classes.paper}>
             <TextField
-            style={{width:'100%'}}
-              placeholder='Address'
+              style={{ width: '100%',marginTop:15 }}
+              label='Address'
+              variant='outlined'
               type="text"
-              onChange={(e)=>setaddress(e.target.value)}
+              onChange={(e) => setaddress(e.target.value)}
+              value={address1}
 
             />
           </Paper>
-          <Paper className={classes.paper} elevation={0}>
+          {/* <Paper className={classes.paper} elevation={0}>
             <TextField
             style={{width:'100%'}}
              type="file"
              onChange={(e)=>setmedia(e.target.files[0])}
             />
           
-          </Paper>
+          </Paper> */}
           <Paper className={classes.paper} elevation={0}>
             <TextareaAutosize
-            maxRows={3}
+              maxRows={3}
               aria-label="maximum height"
+              variant='outlined'
               variant="outlined"
-              placeholder="Qo'shimcha ma'lumotlar..."
-              onChange={(e)=>setdesc(e.target.value)}
+              label="Qo'shimcha ma'lumotlar..."
+              onChange={(e) => setdesc(e.target.value)}
+              value={desc1}
               style={{
                 width: "100%",
                 height: "80px",

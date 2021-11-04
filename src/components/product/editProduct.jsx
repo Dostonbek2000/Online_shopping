@@ -24,17 +24,18 @@ import "react-toastify/dist/ReactToastify.css";
 
 const InputComponent = (props) => {
   const classes = useStyles();
+  const {type,disabled,placeholder,value,onChange,...rest} = props;
 
   return (
     <TextField
       color="primary"
-      type={props.type}
+      type={type}
       className={classes.inputs}
-      disabled={props.disabled}
-      placeholder={props.placeholder}
+      disabled={disabled}
+      placeholder={placeholder}
       fullWidth
-      value={props.value}
-      onChange={props.onChange}
+      value={value}
+      onChange={onChange}
       inputProps={{
         style: {
           fontFamily: "Roboto",
@@ -50,8 +51,8 @@ const InputComponent = (props) => {
 
 const EditProduct = (props) => {
   const token = localStorage.getItem("token");
-
-  const product = props.location.product;
+const {location,...rest} = props;
+  const product = location.product;
   const classes = useStyles();
   const [title, setTitle] = useState(product.title);
   const [price, setPrice] = useState(product.price);

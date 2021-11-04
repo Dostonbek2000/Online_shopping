@@ -249,7 +249,7 @@ const AddUser = ({ infoToasty }) => {
           </Paper>
           <Paper className={classes.paper} elevation={0}>
             <TextareaAutosize
-              rowsMax={3}
+                maxRows={3}
               aria-label="maximum height"
               variant="outlined"
               placeholder="Qo'shimcha ma'lumotlar..."
